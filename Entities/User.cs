@@ -13,6 +13,7 @@ namespace Blog.Entities
         public string Password { get; set; }
 
         public ICollection<Post> Posts { get; set; }
+        public ICollection<Comment> Comments { get; set; }
 
     }
 }
