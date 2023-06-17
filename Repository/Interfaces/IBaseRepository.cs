@@ -7,6 +7,7 @@ namespace Blog.Repository.Interfaces
          Task DeleteAsync(T entity);
          Task<IEnumerable<T>> GetAllAsync();
          Task<T> GetByIdAsync(int id);
+         Task<T> UpdateAsync(T entity);
          
     }
 

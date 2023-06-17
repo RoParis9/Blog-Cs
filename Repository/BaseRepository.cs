@@ -26,7 +26,7 @@ namespace Blog.Repository
 
         }
 
-        public Task DeleteAsync(T entity)
+        public  Task DeleteAsync(T entity)
         {
             _dbSet.Remove(entity);
             return Task.CompletedTask;
@@ -42,6 +42,13 @@ namespace Blog.Repository
         public async Task<T> GetByIdAsync(int id)
         {
             return await _dbSet.FindAsync(id);
+        }
+
+        public async Task<T> UpdateAsync(T entity)
+        {
+            _dbSet.Update(entity);
+            await _dbContext.SaveChangesAsync();
+            return entity;
         }
     }
 }
