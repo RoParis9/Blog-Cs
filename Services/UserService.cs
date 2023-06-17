@@ -4,10 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Blog.Entities;
 using Blog.Repository.Interfaces;
+using Blog.Services.Interfaces;
 
 namespace Blog.Services
 {
-    public class UserService
+    public class UserService : IUserService
     {
         private readonly IUserRepository _userRepository;
 
