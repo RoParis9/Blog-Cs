@@ -1,18 +1,15 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Blog.Entities;
+using Blog.Entities.DTOS;
+using Blog.Entities.DTOS.User;
 
 namespace Blog.Services.Interfaces
 {
     public interface IUserService
     {
-        Task<User> GetUserByIdAsync(int id);
-        Task<User> GetUserByNameAsync(string name);
-        Task<IEnumerable<User>> GetAllUsersAsync();
-        Task<User> AddUserAsync(User user);
-        Task<User> UpdateUserAsync(User user);
-        Task DeleteUserAsync(User user);
+        Task<ResponseUserDTO> GetUserByIdAsync(int id);
+        Task<ResponseUserDTO> GetUserByNameAsync(string name);
+        Task<IEnumerable<ResponseUserDTO>> GetAllUsersAsync();
+        Task<UserDTO> AddUserAsync(UserDTO user);
+        Task<UserDTO> UpdateUserAsync(int id, UserDTO user);
+        Task<bool> DeleteUserAsync(int id);
     }
 }
