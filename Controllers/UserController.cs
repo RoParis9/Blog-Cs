@@ -63,8 +63,8 @@ namespace Blog.Controllers
         public async Task<IActionResult> GetAllUsers()
         {
             try{
-            var users = await _userService.GetAllUsersAsync();
-            return Ok(users);
+                var users = await _userService.GetAllUsersAsync();
+                return Ok(users);
             }
             catch(ArgumentException exception)
             {
@@ -76,8 +76,8 @@ namespace Blog.Controllers
         public async Task<IActionResult> UpdateUser([FromRoute] int id, [FromBody] UserDTO userDTO)
         {
             try{
-            var updateUser = await _userService.UpdateUserAsync(id, userDTO);
-            return Ok(updateUser);
+                var updateUser = await _userService.UpdateUserAsync(id, userDTO);
+                return Ok(updateUser);
             }
             catch(ArgumentException exception)
             {
@@ -89,8 +89,8 @@ namespace Blog.Controllers
         public async Task<IActionResult> DeleteUser([FromRoute] int id)
         {
             try{
-            var isDeleted = await _userService.DeleteUserAsync(id);
-            return NoContent();
+                var isDeleted = await _userService.DeleteUserAsync(id);
+                return NoContent();
             }
             catch(ArgumentException ex)
             {

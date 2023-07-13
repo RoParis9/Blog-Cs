@@ -10,9 +10,8 @@ services:
       - POSTGRES_PASSWORD=docker
       - POSTGRES_DB=Blog
     volumes:
-      - db:/var/lib/postgresql/data
+      - postgres_data:/var/lib/postgresql/data
 
 volumes:
-  db: 
-    driver: local
+  postgres_data:
 

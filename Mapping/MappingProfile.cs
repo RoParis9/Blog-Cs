@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Blog.Entities;
 using Blog.Entities.DTOS;
+using Blog.Entities.DTOS.Post;
 using Blog.Entities.DTOS.User;
 
 namespace Blog.Mapping
@@ -16,6 +17,8 @@ namespace Blog.Mapping
         {
             CreateMap<User, UserDTO>();
             CreateMap<Post, PostDTO>();
+            CreateMap<Post, CreatePostDTO>();
+            CreateMap<CreatePostDTO, Post>();
             CreateMap<Comment, CommentDTO>();
             CreateMap<User, ResponseUserDTO>();
         }
