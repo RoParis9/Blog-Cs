@@ -5,11 +5,11 @@ namespace Blog.Services.Interfaces
 {
     public interface IPostService
     {
-        Task<PostDTO> GetPostByIdAsync(int postId);
+        Task<PostDTO> GetPostByIdAsync(Guid postId);
         Task<IEnumerable<PostDTO>> GetAllPostsAsync();
         Task<PostDTO> GetPostByTitleAsync(string title);
         Task<CreatePostDTO> CreatePostAsync(CreatePostDTO postDTO);
-        Task<CreatePostDTO> UpdatePostAsync(int postId, CreatePostDTO postDTO);
-        Task DeletePostAsync(int postId);
+        Task<CreatePostDTO> UpdatePostAsync(Guid postId, CreatePostDTO postDTO);
+        Task DeletePostAsync(Guid postId);
     }
 }

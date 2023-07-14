@@ -2,8 +2,8 @@ using Blog.Entities;
 
 namespace Blog.Repository.Interfaces
 {
-    public interface IUserRepository 
-    {   
+    public interface IUserRepository
+    {
         Task<User> GetByNameAsync(string name);
         Task<User> GetByIdAsync(int id);
         Task<IEnumerable<User>> GetAllUsersAsync();

@@ -7,7 +7,7 @@ namespace Blog.Entities
 {
     public class Comment
     {
-        public Guid CommentId{ get; set; }
+        public Guid CommentId { get; set; }
         public string Text { get; set; }
         public DateTime CreatedAt { get; set; }
 
@@ -15,6 +15,6 @@ namespace Blog.Entities
 
         public Post Post { get; set; }
 
-        
+
     }
 }

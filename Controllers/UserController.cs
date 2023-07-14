@@ -14,10 +14,10 @@ namespace Blog.Controllers
         public UserController(IUserService userService)
         {
             _userService = userService;
-            
+
         }
-        
-       [HttpPost]
+
+        [HttpPost]
         public async Task<IActionResult> CreateUser([FromBody] UserDTO userDTO)
         {
             try
@@ -25,7 +25,7 @@ namespace Blog.Controllers
                 await _userService.AddUserAsync(userDTO);
                 return Ok("User Created");
             }
-            catch(ArgumentException exception)
+            catch (ArgumentException exception)
             {
                 return BadRequest(exception.Message);
             }
@@ -40,7 +40,7 @@ namespace Blog.Controllers
                 var user = await _userService.GetUserByIdAsync(id);
                 return Ok(user);
             }
-            catch(ArgumentException exception)
+            catch (ArgumentException exception)
             {
                 return BadRequest(exception.Message);
             }
@@ -49,11 +49,12 @@ namespace Blog.Controllers
         [HttpGet("users/{name}")]
         public async Task<IActionResult> GetUserByName([FromRoute] string name)
         {
-            try{
+            try
+            {
                 var user = await _userService.GetUserByNameAsync(name);
                 return Ok(user);
             }
-            catch(ArgumentException exception)
+            catch (ArgumentException exception)
             {
                 return BadRequest(exception.Message);
             }
@@ -62,11 +63,12 @@ namespace Blog.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllUsers()
         {
-            try{
+            try
+            {
                 var users = await _userService.GetAllUsersAsync();
                 return Ok(users);
             }
-            catch(ArgumentException exception)
+            catch (ArgumentException exception)
             {
                 return BadRequest(exception.Message);
             }
@@ -75,11 +77,12 @@ namespace Blog.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateUser([FromRoute] int id, [FromBody] UserDTO userDTO)
         {
-            try{
+            try
+            {
                 var updateUser = await _userService.UpdateUserAsync(id, userDTO);
                 return Ok(updateUser);
             }
-            catch(ArgumentException exception)
+            catch (ArgumentException exception)
             {
                 return BadRequest(exception.Message);
             }
@@ -88,15 +91,16 @@ namespace Blog.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUser([FromRoute] int id)
         {
-            try{
+            try
+            {
                 var isDeleted = await _userService.DeleteUserAsync(id);
                 return NoContent();
             }
-            catch(ArgumentException ex)
+            catch (ArgumentException ex)
             {
                 return BadRequest(ex.Message);
             }
         }
     }
-        
+
 }

@@ -10,7 +10,7 @@ namespace Blog.Repository
     {
         private readonly DataContext _dbContext;
 
-        public UserRepository(DataContext dbContext) 
+        public UserRepository(DataContext dbContext)
         {
             _dbContext = dbContext;
         }
@@ -37,7 +37,7 @@ namespace Blog.Repository
 
         public async Task<User> GetByIdAsync(int id)
         {
-            if(id <= 0)
+            if (id <= 0)
             {
                 throw new ArgumentException("Id is null");
             }

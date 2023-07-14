@@ -12,21 +12,21 @@ namespace Blog.Services
         private readonly IUserRepository _userRepository;
         private readonly IMapper _mapper;
 
-        public UserService(IUserRepository userRepository,IMapper mapper)
+        public UserService(IUserRepository userRepository, IMapper mapper)
         {
             _mapper = mapper;
             _userRepository = userRepository;
         }
         public async Task<ResponseUserDTO> GetUserByIdAsync(int id)
         {
-            if(id <=0)
+            if (id <= 0)
             {
                 throw new ArgumentException("Invalid User Id");
             }
-            
+
             User user = await _userRepository.GetByIdAsync(id);
 
-            if(user == null)
+            if (user == null)
             {
                 throw new Exception("User not found");
             }
@@ -41,23 +41,23 @@ namespace Blog.Services
 
         public async Task<UserDTO> AddUserAsync(UserDTO createNewUser)
         {
-            if(string.IsNullOrWhiteSpace(createNewUser.Name))
+            if (string.IsNullOrWhiteSpace(createNewUser.Name))
             {
                 throw new ArgumentException("Name is required");
             }
 
-            if(string.IsNullOrWhiteSpace(createNewUser.Email))
+            if (string.IsNullOrWhiteSpace(createNewUser.Email))
             {
                 throw new ArgumentException("Email is required");
             }
 
-            if(string.IsNullOrWhiteSpace(createNewUser.Password))
+            if (string.IsNullOrWhiteSpace(createNewUser.Password))
             {
                 throw new ArgumentException("Password is required");
             }
             var existingUser = await _userRepository.GetByEmailAsync(createNewUser.Email);
 
-            if(existingUser != null)
+            if (existingUser != null)
             {
                 throw new Exception("Email is already registered");
             }
@@ -72,12 +72,12 @@ namespace Blog.Services
             User createUser = await _userRepository.AddUserAsync(newUser);
 
             return _mapper.Map<UserDTO>(createUser);
-                
+
         }
 
         public async Task<bool> DeleteUserAsync(int id)
         {
-            if(id <= 0)
+            if (id <= 0)
             {
                 throw new Exception("Invalid user id.");
             }
@@ -96,13 +96,13 @@ namespace Blog.Services
 
         public async Task<ResponseUserDTO> GetUserByNameAsync(string name)
         {
-            if(string.IsNullOrWhiteSpace(name))
+            if (string.IsNullOrWhiteSpace(name))
             {
                 throw new ArgumentException("Name is required.");
             }
             User user = await _userRepository.GetByNameAsync(name);
 
-            if(user == null)
+            if (user == null)
             {
                 throw new Exception("User not found");
             }
@@ -111,38 +111,38 @@ namespace Blog.Services
 
         public async Task<UserDTO> UpdateUserAsync(int id, UserDTO userUpdate)
         {
-            if(userUpdate == null)
+            if (userUpdate == null)
             {
                 throw new ArgumentNullException(nameof(userUpdate), "User info is null");
             }
 
-            if(string.IsNullOrWhiteSpace(userUpdate.Name))
+            if (string.IsNullOrWhiteSpace(userUpdate.Name))
             {
                 throw new ArgumentNullException("Name is required");
             }
 
-            if(string.IsNullOrWhiteSpace(userUpdate.Email))
+            if (string.IsNullOrWhiteSpace(userUpdate.Email))
             {
                 throw new ArgumentNullException("Email is required");
             }
 
-            if(string.IsNullOrWhiteSpace(userUpdate.Password))
+            if (string.IsNullOrWhiteSpace(userUpdate.Password))
             {
                 throw new ArgumentNullException("Password is required");
             }
 
             User existingUser = await _userRepository.GetByIdAsync(id);
 
-            if(existingUser == null)
+            if (existingUser == null)
             {
                 throw new Exception("User not found");
             }
 
             existingUser.Name = userUpdate.Name;
             existingUser.Email = userUpdate.Email;
-            existingUser.Password= userUpdate.Password;
+            existingUser.Password = userUpdate.Password;
 
-            await _userRepository.UpdateUserAsync(existingUser);    
+            await _userRepository.UpdateUserAsync(existingUser);
 
             return _mapper.Map<UserDTO>(existingUser);
 
